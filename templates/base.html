@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/semantic.min.css') }}">
+    <link rel='stylesheet prefetch'
+          href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'>
+    <title>Security Tools</title>
+</head>
+<body>
+
+{#返回操作成功消息#}
+{% for msg in get_flashed_messages(category_filter=['success']) %}
+    {{ msg }}
+{% endfor %}
+{#返回操作失败消息#}
+{% for msg in get_flashed_messages(category_filter=['error']) %}
+    {{ msg }}
+{% endfor %}
+
+
+{% block content %}{% endblock %}
+
+<script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/semantic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+<script>
+    $('.ui.accordion').accordion();
+    $('.ui.dropdown').dropdown();
+    $('.menu .item').tab();
+</script>
+</body>
+</html>

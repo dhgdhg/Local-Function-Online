@@ -1,0 +1,2 @@
+['string_replace', ' 指定字符串替换返回替换结果', [['target_str', '1'], ['old_str', '2'], ['new_str', '3'], ['return', '']]]
+['string_to_hex', ' 字符串转16进制', [['target_str', ''], ['return', '2']]]

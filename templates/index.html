@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="ui vertical accordion menu" style="width: 50%;float: left;">
+        {% for i,v in functions_dict.items() %}
+            <div class="item">
+                <a class="title">
+                    <i class="dropdown icon"></i>
+                    {{ i }}:{{ v.get('description','') }}: {{ v.get('return','') }}
+                </a>
+
+                <div class="content">
+                    <div class="ui form">
+
+                        <form method="POST" action="{{ url_for('function') }}" id="{{ i }}">
+                            <div class="grouped fields">
+                                {% for j,jv in v['parameters'].get('required',{}).items() %}
+                                    <div class="ui labeled input" style="margin-top: 10px">
+                                        <div class="ui label red">
+                                            {{ j }}
+                                        </div>
+                                        <input type="text" placeholder="{{ jv }}" name="{{ j }}">
+                                    </div>
+                                    <br>
+                                {% endfor %}
+
+                                {% for j,jv in v['parameters'].get('optional',{}).items() %}
+                                    <div class="ui labeled input" style="margin-top: 10px">
+                                        <div class="ui label blue">
+                                            {{ j }}
+                                        </div>
+                                        {% if jv[1][0] == 'list' %}
+                                            <div class="ui floating dropdown labeled search icon button form"
+                                                 onmouseout="check_select_value(this)">
+                                                <span class="text">{{ jv[1][1] }}</span>
+                                                <div class="menu">
+                                                    <div class="field">
+                                                        <input type="hidden" name="{{ j }}" value="{{ jv[1][1] }}">
+                                                        {% for sv in jv[1][1:] %}
+                                                            <div class="item" data-value="{{ sv }}">{{ sv }}</div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <input type="text" placeholder="{{ jv[0] }}" value="{{ jv[1] }}"
+                                                   name="{{ j }}">
+                                        {% endif %}
+
+                                    </div>
+                                    <br>
+                                {% endfor %}
+                                <div class="ui right labeled icon button submit" style="margin-top: 10px"
+                                     onclick="send_request('{{ i }}')">
+                                    <i class="right arrow icon"></i>
+                                    执行
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div style="width: 50%; right: 0; float: right;" id="function_result" class="accordion">
+
+    </div>
+{% endblock %}

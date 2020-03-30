@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel='stylesheet prefetch'
+          href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'>
+
+    <title>Document</title>
+</head>
+<body>
+<div id="tab1">
+    <div class="ui top attached tabular menu">
+        <a class="active item" data-tab="first1">First</a>
+        <a class="item" data-tab="second1">Second</a>
+        <a class="item" data-tab="third1">Third</a>
+    </div>
+    <div class="ui bottom attached active tab segment" data-tab="first1">
+        First
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="second1">
+        Second
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third1">
+        Third
+    </div>
+</div>
+<div id="tab2" onload=""></div>
+
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script>
+    $('.menu .item').tab();
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('#tab2').html('<div class="ui top attached tabular menu">\n' +
+            '  <a class="active item" data-tab="first">First</a>\n' +
+            '  <a class="item" data-tab="second">Second</a>\n' +
+            '  <a class="item" data-tab="third">Third</a>\n' +
+            '</div>\n' +
+            '<div class="ui bottom attached active tab segment" data-tab="first">\n' +
+            '  First\n' +
+            '</div>\n' +
+            '<div class="ui bottom attached tab segment" data-tab="second">\n' +
+            '  Second\n' +
+            '</div>\n' +
+            '<div class="ui bottom attached tab segment" data-tab="third">\n' +
+            '  Third\n' +
+            '</div>');
+    });
+</script>
+</body>
+</html>
